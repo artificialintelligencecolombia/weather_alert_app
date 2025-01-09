@@ -5,7 +5,7 @@ from twilio.rest import Client
 API_KEY = 'a31826faf7d1eaa3b356be645473c542'
 latitude = 6.281630
 longitude = -75.332850
-endpoint = f'https://api.openweathermap.org/data/2.5/forecast?'
+endpoint = 'https://api.openweathermap.org/data/2.5/forecast?'
 params = {
     'lat': latitude,
     'lon': longitude,
@@ -44,7 +44,7 @@ for timestamp in raw_list:
 if will_rain:
     client = Client(account_sid, auth_token)
     msn = client.messages.create( 
-        body="Hoy llueve papi, preparese.",
-        from_="whatsapp:+14155238886",
-        to="whatsapp:+573045201870",
+        body=body,
+        from_=from_wpp,
+        to=to_wpp,
         )
