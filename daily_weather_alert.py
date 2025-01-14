@@ -19,8 +19,8 @@ params = {
 account_sid = "ACbb7d83b1756210b75dc987a5776c5b95"
 auth_token = "5461081b3c0b6a87289a336a26a43265"
 body="Hoy llueve papi, preparese."
-from_wpp="whatsapp:+14155238886"
-to_wpp="whatsapp:+573045201870"
+from_wpp="+18787788139"
+to_wpp="+573045201870"
 
 # --------------- Get the weather data --------------- 
 response = requests.get(endpoint, params=params)
@@ -48,3 +48,4 @@ if will_rain:
         from_=from_wpp,
         to=to_wpp,
         )
+    print(msn.status)
