@@ -1,10 +1,15 @@
+import os
+from dotenv import load_dotenv
 import requests
 from twilio.rest import Client
 
+# --------------- Load the environment variables ---------------
+load_dotenv()
+
 # --------------- Set up the Openweather API --------------- 
-API_KEY = 'a31826faf7d1eaa3b356be645473c542'
-latitude = 6.281630
-longitude = -75.332850
+API_KEY = os.getenv("OWM_API_KEY")
+latitude = os.getenv("OWM_LAT")
+longitude = os.getenv("OWM_LONG")
 endpoint = 'https://api.openweathermap.org/data/2.5/forecast?'
 params = {
     'lat': latitude,
@@ -14,13 +19,15 @@ params = {
     'lang': 'es',
     'cnt': 8
 }
+# Twilio wpp sandbox: https://console.twilio.com/us1/develop/sms/try-it-out/whatsapp-learn
+# note: I believe this sandbox must to be activated every 72 hours
 
 # --------------- Set up the Twilio API --------------- 
-account_sid = "ACbb7d83b1756210b75dc987a5776c5b95"
-auth_token = "5461081b3c0b6a87289a336a26a43265"
-body="Hoy llueve papi, preparese."
-from_wpp="+18787788139"
-to_wpp="+573045201870"
+account_sid = os.getenv("TWILIO_ACCOUNT_SID")
+auth_token = os.getenv("AUTH_TOKEN")
+body="Hoy llueve mi terrón de azúcar, prepárate."
+from_wpp="whatsapp:+14155238886" # Note: twilio sandbox number(wpp) is different to twilio phone number(msn) 
+to_wpp=os.getenv("TO_WPP")
 
 # --------------- Get the weather data --------------- 
 response = requests.get(endpoint, params=params)
